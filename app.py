@@ -25,10 +25,9 @@ def home():
 @app.route('/submit', methods=['POST'])
 def submit():
     name = request.form['name']
-    
    
     cursor = db.cursor()
-    cursor.execute("INSERT INTO new_table (recipe_name, ingredients) VALUES (%s, %s)", (name, ))
+    cursor.execute("INSERT INTO new_table (recipe_name) VALUES (%s)", (name,))
     db.commit()
     cursor.close()
 
