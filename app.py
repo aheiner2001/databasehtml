@@ -1,26 +1,21 @@
+import os
 from flask import Flask, render_template, request, redirect
 import mysql.connector
 
 app = Flask(__name__)
 
-# Configure MySQL connection
-# db = mysql.connector.connect(
-#     host="localhost",
-#     user="root",
-#     password="Phatsaxman1*",
-#     database="family_recipe"
-# )
+# Configure MySQL connection using environment variables
 db = mysql.connector.connect(
-    host="sql.mwhepworth.me",
-    user="todo",
-    password="CSE310ToDoListApp#",
-    database="recipie"
+    host=os.getenv('DB_HOST', 'sql.mwhepworth.me'),
+    user=os.getenv('DB_USER', 'todo'),
+    password=os.getenv('DB_PASSWORD', 'CSE310ToDoListApp#'),
+    database=os.getenv('DB_NAME', 'recipie')
 )
 
 @app.route('/')
 def form():
     cursor = db.cursor()
-    cursor.execute("SELECT id, recipe_name FROM new_table")
+    cursor.execute("SELECT id, recipe_name, ingredients FROM new_table")
     recipes = cursor.fetchall()
     cursor.close()
     return render_template('form.html', recipes=recipes)
@@ -28,9 +23,10 @@ def form():
 @app.route('/submit', methods=['POST'])
 def submit():
     name = request.form['name']
+    ingredients = request.form['ingredients']
    
     cursor = db.cursor()
-    cursor.execute("INSERT INTO new_table (recipe_name) VALUES (%s)", (name,))
+    cursor.execute("INSERT INTO new_table (recipe_name, ingredients) VALUES (%s, %s)", (name, ingredients))
     db.commit()
     cursor.close()
 
