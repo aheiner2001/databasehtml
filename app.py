@@ -12,10 +12,12 @@ db = mysql.connector.connect(
     database=os.getenv('DB_NAME', 'recipie')
 )
 
-@app.route('/')
-def form():
+@app.route('/', methods=['GET', 'HEAD'])
+def home():
+    if request.method == 'HEAD':
+        return '', 200  # Return only headers
     cursor = db.cursor()
-    cursor.execute("SELECT id, recipe_name, ingredients FROM new_table")
+    cursor.execute("SELECT id, recipe_name FROM new_table")
     recipes = cursor.fetchall()
     cursor.close()
     return render_template('form.html', recipes=recipes)
