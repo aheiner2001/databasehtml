@@ -28,7 +28,7 @@ def submit():
     
    
     cursor = db.cursor()
-    cursor.execute("INSERT INTO new_table (recipe_name, ingredients) VALUES (%s, %s)", (name, ingredients))
+    cursor.execute("INSERT INTO new_table (recipe_name, ingredients) VALUES (%s, %s)", (name, ))
     db.commit()
     cursor.close()
 
