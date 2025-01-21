@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form</title>
+</head>
+<body>
+    <form action="/submit" method="post">
+        <label for="name">Recipe Title:</label>
+        <input type="text" id="name" name="name"><br><br>
+        
+        <input type="submit" value="Submit">
+    </form>
+
+    <h2>Recipe List</h2>
+    <ul>
+        {% for recipe in recipes %}
+            <li>{{ recipe[0]}}: {{recipe[1] }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
