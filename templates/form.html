@@ -2,13 +2,14 @@
 <html>
 <head>
     <title>Form</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
     <form action="/submit" method="post">
         <label for="name">Recipe Title:</label>
         <input type="text" id="name" name="name"><br><br>
         
-        <input type="submit" value="Submit">
+        <button type="submit">Submit</button>
     </form>
 
     <h2>Recipe List</h2>
