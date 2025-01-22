@@ -14,10 +14,12 @@ db = mysql.connector.connect(
 
 @app.route('/', methods=['GET', 'HEAD'])
 def home():
+
+    
     if request.method == 'HEAD':
         return '', 200  # Return only headers
     cursor = db.cursor()
-    cursor.execute("SELECT id, recipe_name FROM new_table")
+    cursor.execute("SELECT id, recipe_name FROM new_table ORDER BY recipe_name")
     recipes = cursor.fetchall()
     cursor.close()
     return render_template('form.html', recipes=recipes)
@@ -25,9 +27,10 @@ def home():
 @app.route('/submit', methods=['POST'])
 def submit():
     name = request.form['name']
+    food_type = request.form['food_type']
    
     cursor = db.cursor()
-    cursor.execute("INSERT INTO new_table (recipe_name) VALUES (%s)", (name,))
+    cursor.execute("INSERT INTO new_table (recipe_name, food_type) VALUES (%s, %s)", (name, food_type))
     db.commit()
     cursor.close()
 

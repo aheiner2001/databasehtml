@@ -42,6 +42,7 @@ label {
 
 input[type="text"], textarea {
     margin-bottom: 15px;
+    height: 25px;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: var(--border-radius);
@@ -49,7 +50,7 @@ input[type="text"], textarea {
 
 button, input[type="submit"] {
     width: 100px;
-    height: 40px;
+    height: 50px; /* Added height */
     padding: 10px 20px;
     border: none;
     border-radius: var(--border-radius);
@@ -83,4 +84,11 @@ ul li:hover {
 
 ul li:last-child {
     border-bottom: none;
+}
+select {
+    margin-bottom: 15px;
+    height: 40px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius);
 }
