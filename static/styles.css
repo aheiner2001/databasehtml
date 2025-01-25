@@ -7,6 +7,9 @@
     --button-hover-background-color: #004f56;
     --border-radius: 8px;
     --padding: 20px;
+    --font-size: 18px;
+    --font-size-small: 20px;
+    --font-size-large: 22px;
 }
 
 body {
@@ -14,6 +17,7 @@ body {
     background-color: var(--background-color);
     margin: 0;
     padding: var(--padding);
+    font-size: var(--font-size);
 }
 
 .container {
@@ -28,6 +32,7 @@ body {
 h1 {
     text-align: center;
     color: var(--text-color);
+    font-size: var(--font-size-large);
 }
 
 form {
@@ -38,6 +43,7 @@ form {
 label {
     margin-bottom: 5px;
     color: var(--label-color);
+    font-size: var(--font-size);
 }
 
 input[type="text"], textarea {
@@ -46,6 +52,7 @@ input[type="text"], textarea {
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: var(--border-radius);
+    font-size: var(--font-size);
 }
 
 button, input[type="submit"] {
@@ -58,6 +65,7 @@ button, input[type="submit"] {
     color: #fff;
     cursor: pointer;
     align-self: flex-start;
+    font-size: var(--font-size);
 }
 
 button:hover, input[type="submit"]:hover {
@@ -71,11 +79,27 @@ ul {
     border: 1px solid #ddd;
     border-radius: var(--border-radius);
     list-style-type: none;
+    font-size: var(--font-size);
 }
 
 ul li {
     padding: 10px;
     border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+ul li .delete-button {
+    background-color: transparent;
+    border: none;
+    color: red;
+    cursor: pointer;
+    font-size: var(--font-size);
+}
+
+ul li .delete-button:hover {
+    color: darkred;
 }
 
 ul li:hover {
@@ -85,10 +109,12 @@ ul li:hover {
 ul li:last-child {
     border-bottom: none;
 }
+
 select {
     margin-bottom: 15px;
     height: 40px;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: var(--border-radius);
+    font-size: var(--font-size);
 }

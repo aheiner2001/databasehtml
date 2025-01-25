@@ -14,8 +14,6 @@ db = mysql.connector.connect(
 
 @app.route('/', methods=['GET', 'HEAD'])
 def home():
-
-    
     if request.method == 'HEAD':
         return '', 200  # Return only headers
     cursor = db.cursor()
@@ -27,13 +25,22 @@ def home():
 @app.route('/submit', methods=['POST'])
 def submit():
     name = request.form['name']
-    food_type = request.form['food_type']
+    food_type = request.form.get('food_type', 'default_value')  # Set default value if not provided
    
     cursor = db.cursor()
     cursor.execute("INSERT INTO new_table (recipe_name, food_type) VALUES (%s, %s)", (name, food_type))
     db.commit()
     cursor.close()
 
+    return redirect('/')
+
+@app.route('/delete', methods=['POST'])
+def delete():
+    recipe_id = request.form['id']
+    cursor = db.cursor()
+    cursor.execute("DELETE FROM new_table WHERE id = %s", (recipe_id,))
+    db.commit()
+    cursor.close()
     return redirect('/')
 
 if __name__ == '__main__':

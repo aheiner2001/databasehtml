@@ -6,10 +6,10 @@
 </head>
 <body>
     <form action="/submit" method="post">
-        <label for="name">Recipe Title:</label>
+        <label for="name">Add to the list:</label>
         <input type="text" id="name" name="name" required><br><br>
-        <label for="food_type">Food Type:</label>
-        <select id="food_type" name="food_type" required>
+        <!-- <label for="food_type">Food Type:</label> -->
+        <!-- <select id="food_type" name="food_type" required>
             <option value="" disabled selected>Select food type</option>
             <option value="breakfast">Breakfast</option>
             <option value="lunch">Lunch</option>
@@ -17,14 +17,20 @@
             <option value="dessert">Dessert</option>
             <option value="snack">Snack</option>
         </select><br><br>
-        
+         -->
         <button type="submit">Submit</button>
     </form>
 
-    <h2>Recipe List</h2>
+    <h2>Cool Name List</h2>
     <ul>
         {% for recipe in recipes %}
-            <li>{{ recipe[0]}}: {{recipe[1] }}</li>
+            <li>
+                {{ recipe[1] }}
+                <form action="/delete" method="post" style="display:inline;">
+                    <input type="hidden" name="id" value="{{ recipe[0] }}">
+                    <button type="submit" class="delete-button">x</button>
+                </form>
+            </li>
         {% endfor %}
     </ul>
 </body>
